@@ -1,6 +1,6 @@
 {
   "name": "grunt-html-index",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "安装:在grunt目录下安装",
   "main": "task/index.js",
   "scripts": {
