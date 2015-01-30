@@ -1,5 +1,5 @@
 /*
- * grunt-html-replace
+ * grunt-html-index
  * https://github.com/whxaxes/grunt-html-index
  *
  * Copyright (c) 2015 wanghx
