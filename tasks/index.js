@@ -27,7 +27,7 @@ module.exports = function (grunt) {
                 var fileName = filePath.split("/")[filePath.split("/").length - 1];
 
                 //检查路径和文件合法性，同时忽略带下划线前缀文件
-                if (!grunt.file.exists(filePath) || !grunt.file.isFile(filePath) || !fileName.match(/(\.html/g) || fileName.match(/^_+/g) || fileName.match(/html-index/g)) continue;
+                if (!grunt.file.exists(filePath) || !grunt.file.isFile(filePath) || !fileName.match(/(.html/g) || fileName.match(/^_+/g) || fileName.match(/html-index/g)) continue;
 
                 var str = grunt.file.read(filePath);
 
