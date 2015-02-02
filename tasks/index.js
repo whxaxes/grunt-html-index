@@ -16,6 +16,13 @@ module.exports = function (grunt) {
         var htmlStr = grunt.file.read(dex.slice(0 , dex.length-2).join("/")+"/index.html");
 
         var hidest = config.dest;
+        var destFileName = "html-index.html";
+
+        if(hidest.match(/^((\.|\.\.|[\w-]+)\/)*[\w-]+\.html$/)){
+            destFileName = (hidest = hidest.split("/")).pop();
+            hidest = (hidest.join("/") || ".")+"/";
+        }
+
         hidest = grunt.file.isDir(hidest) ? (hidest + (hidest.charAt(hidest.length - 1) === "/"?"":"/")) : "./";
 
         var html = '<body><ul class="main">';
@@ -27,7 +34,7 @@ module.exports = function (grunt) {
                 var fileName = filePath.split("/")[filePath.split("/").length - 1];
 
                 //检查路径和文件合法性，同时忽略带下划线前缀文件
-                if (!grunt.file.exists(filePath) || !grunt.file.isFile(filePath) || !fileName.match(/\.html/g) || fileName.match(/^_+/g) || fileName.match(/html-index/g)) continue;
+                if (!grunt.file.exists(filePath) || !grunt.file.isFile(filePath) || !fileName.match(/\.html/g) || fileName.match(/^_+/g) || fileName.indexOf(destFileName)>=0) continue;
 
                 var str = grunt.file.read(filePath);
 
@@ -51,11 +58,12 @@ module.exports = function (grunt) {
                 }
                 nfa = nfa.concat(fa.slice(j , fa.length));
                 //console.log(nfa.join("/"));
-                html += '<li><a href="' + nfa.join("/") + '" target="_blank">' + title + '<span>'+nfa.join("/")+'</span></a></li>';
+                html += '<li><a href="' + nfa.join("/") + '" target="_blank">&nbsp;&nbsp;' + title + '&nbsp;&nbsp;<span>'+nfa.join("/")+'</span></a></li>';
             }
         });
         html += '</ul></body>';
 
-        grunt.file.write(hidest+"html-index.html" , htmlStr.replace(/<body>[\S\s]*?<\/body>/ , html))
+        grunt.file.write(hidest+destFileName , htmlStr.replace(/<body>[\S\s]*?<\/body>/ , html))
+        grunt.log.ok("Processed:"+hidest+destFileName);
     });
 };
