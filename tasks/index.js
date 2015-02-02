@@ -18,7 +18,7 @@ module.exports = function (grunt) {
         var hidest = config.dest;
         hidest = grunt.file.isDir(hidest) ? (hidest + (hidest.charAt(hidest.length - 1) === "/"?"":"/")) : "./";
 
-        var html = '<body><div class="main">';
+        var html = '<body><ul class="main">';
         var ha = hidest.split("/");
 
         this.files.forEach(function(file){
@@ -51,10 +51,10 @@ module.exports = function (grunt) {
                 }
                 nfa = nfa.concat(fa.slice(j , fa.length));
                 //console.log(nfa.join("/"));
-                html += '<a href="' + nfa.join("/") + '" target="_blank">' + title + '</a>';
+                html += '<li><a href="' + nfa.join("/") + '" target="_blank">' + title + '<span>'+nfa.join("/")+'</span></a></li>';
             }
         });
-        html += '</div></body>';
+        html += '</ul></body>';
 
         grunt.file.write(hidest+"html-index.html" , htmlStr.replace(/<body>[\S\s]*?<\/body>/ , html))
     });
