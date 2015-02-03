@@ -58,7 +58,7 @@ module.exports = function (grunt) {
                 }
                 nfa = nfa.concat(fa.slice(j , fa.length));
                 //console.log(nfa.join("/"));
-                html += '<li><a href="' + nfa.join("/") + '" target="_blank">&nbsp;&nbsp;' + title + '&nbsp;&nbsp;<span>'+nfa.join("/")+'</span></a></li>';
+                html += '<li><a href="' + nfa.join("/") + '" target="_blank">&nbsp;&nbsp;' + nfa.join("/") + '&nbsp;&nbsp;<span>'+title+'</span></a></li>';
             }
         });
         html += '</ul></body>';
