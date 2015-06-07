@@ -1,6 +1,6 @@
 ﻿{
   "name": "grunt-html-index",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "快速建立html的导航页",
   "main": "task/index.js",
   "scripts": {
